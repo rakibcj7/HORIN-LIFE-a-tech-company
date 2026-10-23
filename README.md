@@ -20,6 +20,19 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Inquiry form storage
+
+The contact form sends submissions to `POST /api/inquiries`. The server validates the fields and saves each inquiry to the MongoDB `inquiries` collection with a `status: "new"` and `createdAt` timestamp. The route includes a honeypot and a basic per-process rate limit.
+
+1. Create a MongoDB Atlas cluster and a database user with access to the `horinlife` database. In Atlas Network Access, allow the network used by your deployed app.
+2. Copy `.env.example` to `.env.local` and set `MONGODB_URI` to the Atlas connection string. Keep the database username/password in the server environment only; do not prefix these variables with `NEXT_PUBLIC_`.
+3. Restart the development server. In production, add the same variables to your hosting provider's environment settings.
+4. View submissions in Atlas under **Database → Browse Collections → horinlife → inquiries**.
+
+Email notifications are optional. Configure `RESEND_API_KEY`, `INQUIRY_NOTIFICATION_EMAIL`, and a verified `RESEND_FROM_EMAIL` to receive a notification for each saved inquiry. Submissions remain stored if email delivery is unavailable.
+
+The rate limit is in memory per running app process, so it is best-effort on multi-instance/serverless hosting. Use a shared rate-limit service or a CAPTCHA such as Turnstile before relying on it for high-volume public traffic.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
