@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "figma-implement-design": {
+      "source": "kilo-org/kilo-marketplace",
+      "sourceType": "github",
+      "skillPath": "skills/figma-implement-design/SKILL.md",
+      "computedHash": "489164ce56391c909ee1da67ae41e1dac2ad14f63fb9af2fe11648650ebc16d7"
+    }
+  }
+}
