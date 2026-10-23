@@ -16,7 +16,7 @@ export const metadata = {
   description:
     "High-performance websites, custom web applications, and tailored software tools for small businesses.",
   icons: {
-    icon: "/horin-logo-updated.jpg",
+    icon: "/icon.png",
   },
 };
 
