@@ -1,15 +1,16 @@
 import { Check, Eyebrow } from "./ui";
 import { MotionGroup, MotionItem } from "./MotionGroup";
+import ScrollReveal from "./ScrollReveal";
 
 export default function PricingSection() {
   return (
     <section className="section pricing-section" id="pricing">
       <div className="container">
-        <div className="section-heading">
+        <ScrollReveal><div className="section-heading">
           <Eyebrow>STRAIGHTFORWARD PRICING GUIDANCE</Eyebrow>
           <h2>Clear Fit &amp; Investment<br />Models</h2>
           <p>We work on transparent fixed-scope agreements so you never encounter unexpected<br className="desktop-only" /> billing surprises. Here is how we structure projects.</p>
-        </div>
+        </div></ScrollReveal>
         <MotionGroup className="pricing-grid">
           <MotionItem hover>
             <article className="price-card">

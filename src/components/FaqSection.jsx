@@ -1,56 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { faqs } from "../data/content";
 import { Eyebrow } from "./ui";
+import Icon from "./Icon";
+import ScrollReveal from "./ScrollReveal";
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(null);
-  const reduceMotion = useReducedMotion();
 
   return (
     <section className="section faq-section" id="faq">
       <div className="container">
-        <div className="center-heading">
+        <ScrollReveal className="center-heading">
           <Eyebrow centered>COMMON INQUIRIES</Eyebrow>
           <h2>Clear answers to<br />practical questions</h2>
           <p>What to expect when planning, building, and owning your software.</p>
-        </div>
+        </ScrollReveal>
         <div className="faq-list">
           {faqs.map(([question, answer], index) => {
             const isOpen = openIndex === index;
             const answerId = `faq-answer-${index}`;
-
             return (
-              <article className="faq-item" key={question}>
-                <button
-                  className="faq-question"
-                  id={`faq-trigger-${index}`}
-                  type="button"
-                  aria-expanded={isOpen}
-                  aria-controls={answerId}
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                >
-                  {question}<span aria-hidden="true">⌄</span>
+              <motion.article className="faq-item" key={question} whileTap={{ scale: 0.99 }} layout>
+                <button className="faq-question" id={`faq-trigger-${index}`} type="button" aria-expanded={isOpen} aria-controls={answerId} onClick={() => setOpenIndex(isOpen ? null : index)}>
+                  {question}
+                  <motion.span animate={{ rotate: isOpen ? 45 : 0, scale: isOpen ? 1.1 : 1 }} transition={{ duration: 0.3, type: "spring", stiffness: 260 }} aria-hidden="true"><Icon name="plus" size={20} /></motion.span>
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div
-                      id={answerId}
-                      className="faq-answer-wrap"
-                      role="region"
-                      aria-labelledby={`faq-trigger-${index}`}
-                      initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: reduceMotion ? "auto" : 0, opacity: reduceMotion ? 1 : 0 }}
-                      transition={{ duration: reduceMotion ? 0 : 0.28, ease: "easeInOut" }}
-                    >
+                    <motion.div id={answerId} className="faq-answer-wrap" role="region" aria-labelledby={`faq-trigger-${index}`} initial={{ height: 0, opacity: 0, y: 12 }} animate={{ height: "auto", opacity: 1, y: 0 }} exit={{ height: 0, opacity: 0, y: -8 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
                       <p>{answer}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </article>
+              </motion.article>
             );
           })}
         </div>

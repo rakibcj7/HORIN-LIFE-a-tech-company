@@ -61,7 +61,7 @@ export default function SiteFooter() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 Horin Life. Built with care.</p>
+          <p>&copy; 2026 Horin Life. Built with care.</p>
           <nav aria-label="Policies">
             <a href={`mailto:${inquiryEmail}?subject=Privacy%20Policy`}>Privacy policy</a>
             <a href={`mailto:${inquiryEmail}?subject=Terms%20of%20service`}>Terms of service</a>
