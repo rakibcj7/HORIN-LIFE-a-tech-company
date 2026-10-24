@@ -33,6 +33,7 @@ export const services = [
 
 export const projects = [
   {
+    slug: "timberline-logistics-portal",
     tag: "LOGISTICS & SUPPLY",
     result: "+42% Dispatch Speed",
     title: "Timberline Logistics Portal",
@@ -41,8 +42,17 @@ export const projects = [
     stack: "Next.js / Node.js / Postgres / Mapbox",
     visual: "logistics",
     reverse: false,
+    detail: {
+      challenge: "Dispatchers coordinated 38 drivers across depots using spreadsheets and long SMS threads. Manifest changes arrived late, duplicate entry was common, and managers had little visibility into daily fleet capacity.",
+      approach: "We mapped the dispatch workflow with depot staff, then designed one shared operations portal around the three decisions they make most: what is ready, who is available, and which route should move next.",
+      delivery: ["Live load and manifest board", "Driver and vehicle assignment", "Route status updates for depot teams", "Operational dashboard for daily review"],
+      outcome: "The illustrative rollout reduced the time between a ready manifest and driver assignment, while giving the team one place to confirm the current plan.",
+      timeline: "3.5 weeks",
+      role: "Product strategy, UX, engineering, launch",
+    },
   },
   {
+    slug: "arbor-artisans-booking-store",
     tag: "CRAFT MANUFACTURING",
     result: "+185% Online Sales",
     title: "Arbor Artisans E-Commerce & Workshop Booking",
@@ -51,8 +61,17 @@ export const projects = [
     stack: "Remix / Shopify Headless / Resend / Tailwind",
     visual: "booking",
     reverse: true,
+    detail: {
+      challenge: "The craft studio sold products online and ran paid workshops, but bookings, deposits, waivers, and instructor calendars lived in separate tools. Staff manually reconciled capacity and followed up on incomplete registrations.",
+      approach: "We brought the store and workshop journey together, with clear session availability and a checkout flow that records the information the studio needs before each class.",
+      delivery: ["Product catalog and streamlined checkout", "Workshop sessions with live seat counts", "Deposit collection and registration intake", "Calendar updates and confirmation emails"],
+      outcome: "The illustrative studio gained a dependable view of each class roster and a smoother path from discovering a workshop to securing a seat.",
+      timeline: "6 weeks",
+      role: "Service design, commerce UX, integrations, engineering",
+    },
   },
   {
+    slug: "fieldflow-offline-operations",
     tag: "FIELD SERVICES",
     result: "100% Offline Capable",
     title: "FieldFlow Operations Suite",
@@ -61,6 +80,14 @@ export const projects = [
     stack: "Tauri / Rust / SQLite / CRDTs",
     visual: "field",
     reverse: false,
+    detail: {
+      challenge: "Field crews worked beyond reliable mobile coverage. Paper notes and delayed re-entry made it hard to know which work orders were complete, and crews had to repeat updates after returning to signal.",
+      approach: "We prioritized offline use from the start: work orders are stored locally, updates remain available without a connection, and the sync flow makes pending changes visible to the crew.",
+      delivery: ["Offline-first tablet work orders", "Local records for inspections and notes", "Queued updates with sync status", "A simple supervisor view of crew progress"],
+      outcome: "The illustrative field team could keep recording work in low-signal areas and reconcile updates when connectivity returned, with fewer details left to memory.",
+      timeline: "8 weeks",
+      role: "Workflow research, interface design, application engineering, handover",
+    },
   },
 ];
 
@@ -72,11 +99,11 @@ export const frictions = [
 ];
 
 export const process = [
-  ["01", "01 / ALIGNMENT", "Deep Discovery", "We audit your daily bottlenecks, examine current tools, and identify the highest ROI opportunity."],
-  ["02", "02 / CLARITY", "Fixed Proposal", "A transparent scope blueprint with exact deliverables, firm delivery dates, and flat-fee pricing."],
-  ["03", "03 / PROTOTYPE", "UI/UX Design", "Interactive Figma designs you can click through. We test user ergonomics before a single line of code is written."],
-  ["04", "04 / BUILD", "Engineering", "Modern, modular code with rigorous automated edge-case validation and weekly progress demonstrations."],
-  ["05", "05 / FREEDOM", "Launch & Handover", "Zero-downtime deployment, recorded video staff training, complete source code handover, and ongoing support."],
+  ["01", "01 / ALIGNMENT", "Deep Discovery", "We start with a working session to understand your customers, goals, daily bottlenecks, and the tools your team already relies on. Together we rank the opportunities by impact, capture constraints, and agree what success should look like."],
+  ["02", "02 / CLARITY", "Fixed Proposal", "You receive a written scope with user journeys, deliverables, assumptions, responsibilities, and acceptance criteria. We map milestones and review dates, explain any third-party costs, and confirm the fee and schedule before work begins."],
+  ["03", "03 / PROTOTYPE", "UI/UX Design", "We map the key screens and shape them into a clickable prototype before engineering starts. You can review the content, layout, and user flows on desktop and mobile, then give feedback at planned checkpoints."],
+  ["04", "04 / BUILD", "Engineering", "We build in small, reviewable stages and share progress against the agreed scope. Each stage includes functional checks, responsive review, and a demonstration so issues and decisions are visible while there is still time to adjust."],
+  ["05", "05 / FREEDOM", "Launch & Handover", "Before release, we complete final checks, prepare the production environment, and coordinate a planned launch. We then hand over the source code, access details, setup notes, and recorded team training, with support arranged as agreed."],
 ];
 
 export const faqs = [

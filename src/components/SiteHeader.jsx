@@ -64,6 +64,10 @@ export default function SiteHeader() {
           <Link href={href} key={label} onClick={closeMenu}>{label}</Link>
         ))}
         <Link className="nav-cta" href="/#contact" onClick={closeMenu}>Let&apos;s talk <Arrow /></Link>
+        <div className="nav-socials" aria-label="Social and messaging links">
+          <a href="https://www.facebook.com/share/1EcxgWUJpj/" target="_blank" rel="noreferrer" aria-label="Visit Horin Life on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a5 5 0 0 0-5 5v2H6v4h3v5h4v-5h3l1-4h-4V9a1 1 0 0 1 1-1Z" /></svg></a>
+          <a href="https://wa.me/601133161582" target="_blank" rel="noreferrer" aria-label="Message Horin Life on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z" /><path d="M9 8.5c.5 2.5 2 4 4.5 5l1-1 2 1c-.3 1.6-1.3 2.2-2.4 2-3.5-.6-6.6-3.7-7.2-7.2-.2-1.1.4-2.1 2-2.4l1 2-1 1Z" /></svg></a>
+        </div>
       </nav>
     </header>
   );
