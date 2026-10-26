@@ -7,12 +7,9 @@ export default function TermsPage() {
   return (
     <main>
       <SiteHeader />
-      <section className="section"><div className="container" style={{maxWidth:800}}>
+      <section className="section" style={{paddingTop:120}}><div className="container" style={{maxWidth:800}}>
         <h1>Terms &amp; Conditions</h1>
         <p>Last updated: January 2026</p>
-        <b/>
-         <b/>
-          <b/>
         <h2>1. Services</h2>
         <p>Horin life provides web development, mobile app development, digital marketing, and related IT services as agreed upon in individual project contracts.</p>
         <h2>2. Payment Terms</h2>

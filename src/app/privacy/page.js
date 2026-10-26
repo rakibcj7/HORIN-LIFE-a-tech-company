@@ -7,7 +7,7 @@ export default function PrivacyPage() {
   return (
     <main>
       <SiteHeader />
-      <section className="section"><div className="container" style={{maxWidth:800}}>
+      <section className="section" style={{paddingTop:120}}><div className="container" style={{maxWidth:800}}>
         <h1>Privacy Policy</h1>
         <p>Last updated: January 2026</p>
         <h2>1. Information We Collect</h2>
