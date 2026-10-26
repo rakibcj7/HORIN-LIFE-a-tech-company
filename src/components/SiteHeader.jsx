@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Arrow } from "./ui";
 
 const navigation = [
+  ["About", "/#about"],
   ["Services", "/#services"],
   ["Our work", "/#work"],
   ["How we work", "/#process"],

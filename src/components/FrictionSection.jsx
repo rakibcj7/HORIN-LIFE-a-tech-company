@@ -10,7 +10,7 @@ export default function FrictionSection() {
       <div className="container">
         <ScrollReveal className="center-heading">
           <Eyebrow centered>DIRECT SOLUTIONS</Eyebrow>
-          <h2>Stop Letting Disorganized<br />Tools Limit Your Growth</h2>
+          <h2>Annyoing Small Problem?<br />Say No More!</h2>
           <p>We cure operational headaches that keep founders working late on tasks computers should handle.</p>
         </ScrollReveal>
         <MotionGroup className="friction-grid">

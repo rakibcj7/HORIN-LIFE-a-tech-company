@@ -1,5 +1,6 @@
 import SiteHeader from "./SiteHeader";
 import Hero from "./Hero";
+import AboutSection from "./AboutSection";
 import ServicesSection from "./ServicesSection";
 import CaseStudiesSection from "./CaseStudiesSection";
 import FrictionSection from "./FrictionSection";
@@ -16,7 +17,7 @@ export default function LandingPage() {
     <main>
       <ReadingProgress />
       <SiteHeader />
-      <Hero />
+      <Hero /> 
       <ServicesSection />
       <CaseStudiesSection />
       <FrictionSection />
@@ -24,6 +25,7 @@ export default function LandingPage() {
       <PricingSection />
       <TestimonialsSection />
       <FaqSection />
+       <AboutSection />
       <ContactSection />
       <SiteFooter />
     </main>

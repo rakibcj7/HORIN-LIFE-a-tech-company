@@ -24,6 +24,7 @@ const linkGroups = [
   {
     title: "STUDIO",
     links: [
+      ["About us", "/#about"],
       ["Case studies", "/#work"],
       ["Client impact", "/#testimonials"],
       ["How we work", "/#process"],

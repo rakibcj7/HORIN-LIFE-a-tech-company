@@ -228,3 +228,33 @@ export const faqs = [
   ["What happens if we need changes or maintenance after launch?", "We include a post-launch handover and a defined warranty period in the project proposal. The warranty covers issues where the delivered work does not match the agreed scope; new features and changes are estimated separately. After handover, you can make updates in-house or request support when you need it."],
   ["Do we need to buy expensive servers or software licenses?", "Usually not. We choose hosting and third-party services to fit your expected traffic and operational needs, then identify their ongoing costs before you approve the plan. Some projects can run on low-cost hosting or local devices, while others need paid infrastructure for reliability, payments, email, or data storage."],
 ];
+
+export const about = {
+  intro: "Horin Life began in Kuala Lumpur in 2026 with a simple goal: make good business feel lighter. We partner with founders and small teams to remove the bottlenecks that slow down their best work.",
+  body: "Six completed projects and eight happy clients later, we are thriving alongside the people we build for. The formula has not changed: listen closely, ship carefully, and make business easier by solving the problem that matters most.",
+  stats: [
+    { value: "06", label: "Completed projects", note: "Scoped, shipped, and handed over." },
+    { value: "08", label: "Happy clients", note: "Small teams now working lighter." },
+    { value: "24h", label: "Fast support", note: "Typical first response, direct from the team." },
+  ],
+  principles: [
+    {
+      number: "01",
+      icon: "target",
+      title: "Our mission",
+      copy: "Make business easier by solving the bottleneck that costs your team the most time. We build the smallest useful system that creates the clearest result.",
+    },
+    {
+      number: "02",
+      icon: "globe",
+      title: "Our vision",
+      copy: "Be the Kuala Lumpur studio that small businesses trust with serious software: thoughtful in design, honest in scope, and dependable after launch.",
+    },
+    {
+      number: "03",
+      icon: "shield",
+      title: "Our promise",
+      copy: "Straight answers, visible progress, and a clean handover. You will always know what is being built, what it costs, and how to run it yourself.",
+    },
+  ],
+};

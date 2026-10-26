@@ -19,7 +19,7 @@ export default function Hero() {
     <section className="hero" id="top" ref={heroRef}>
       <div className="hero-inner">
         <motion.div className="hero-copy-stack" variants={intro} initial="hidden" animate="visible">
-          <motion.div variants={reveal}><div className="pill"><span />CUSTOM DIGITAL SOLUTIONS FOR SMALL BUSINESSES</div></motion.div>
+          <motion.div variants={reveal}><div className="pill"><span />CUSTOM DIGITAL SOLUTIONS FOR YOUR BUSINESSES</div></motion.div>
           <motion.h1 variants={reveal}>Digital solutions that help <br /> your business<br /><span className="underlined">grow.</span></motion.h1>
           <motion.p className="hero-copy" variants={reveal}>We engineer high-performance websites, streamlined web portals, and tailored standalone software tools. Designed specifically to eliminate repetitive manual friction and convert operational chaos into predictable revenue.</motion.p>
           <motion.div className="hero-actions" variants={reveal}><a className="button button-cta" href="#contact">Get a Free Consultation <Arrow /></a><a className="button button-quiet" href="#work">Explore Our Work <Arrow diagonal /></a></motion.div>
