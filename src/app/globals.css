@@ -287,11 +287,30 @@ a:hover .arrow{transform:translateX(4px)}
 @media(max-width:640px){.project-detail-copy h1{font-size:clamp(38px,11vw,54px)}.project-detail-copy>p{font-size:14px}.project-detail-meta{gap:18px}.project-detail-meta span{max-width:46%}.project-detail-visual .mock-window,.project-detail-visual .booking-window,.project-detail-visual .field-window{min-height:210px}.project-metrics{gap:10px}.project-metrics>div{padding:16px}.project-metrics b{font-size:20px}.project-metrics span{font-size:10px}.project-story-card{padding:23px}.project-delivery ul{padding:15px 18px}.project-outcome{padding:24px}.project-next .button{width:100%;justify-content:center}}
 
 /* Animated light-green gradient CTA — Hero "Get a Free Consultation" (src/components/Hero.jsx) */
-.button-cta{position:relative;overflow:hidden;isolation:isolate;color:#1a2913;background:linear-gradient(105deg,#c9f59a 0%,#a9ef58 30%,#e8fbd1 55%,#b5f26f 78%,#cdf69e 100%);background-size:240% 100%;background-position:0% 50%;animation:cta-gradient 8s ease-in-out infinite;box-shadow:0 10px 24px rgba(95,139,45,.26),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .22s ease,box-shadow .25s ease,filter .25s ease}
-.button-cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 46%,transparent 62%);transform:translateX(-140%);animation:cta-glint 6s ease-in-out infinite;pointer-events:none}
-.button-cta .arrow{color:#35531f}
-.button-cta:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(95,139,45,.32),inset 0 1px 0 rgba(255,255,255,.7);filter:saturate(1.04)}
+.button-cta{position:relative;overflow:hidden;isolation:isolate;color:#eaf7e0;background:#0b0f0a;border:0;box-shadow:0 10px 24px rgba(0,0,0,.35);transition:transform .22s ease,box-shadow .25s ease,filter .25s ease}
+.button-cta::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;padding:1.5px;background:linear-gradient(120deg,#7cff6b,#d8ffb8,#3fd35a,#b8ff96,#7cff6b);background-size:300% 100%;animation:cta-gradient 6s linear infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.button-cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.18) 46%,transparent 62%);transform:translateX(-140%);animation:cta-glint 6s ease-in-out infinite;pointer-events:none}
+.button-cta .arrow{color:#b8ff96}
+.button-cta:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(124,255,107,.42),0 0 18px rgba(124,255,107,.32),0 16px 30px rgba(16,35,13,.3);filter:saturate(1.04)}
 .button-cta:active{transform:translateY(-1px)}
 @keyframes cta-gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes cta-glint{0%,100%{transform:translateX(-140%)}35%{transform:translateX(140%)}}
 @media(prefers-reduced-motion:reduce){.button-cta,.button-cta::after{animation:none}}
+.service-detail-more{padding:70px 0 90px;background:#eef5ed}
+.service-detail-more-inner{max-width:900px}
+.service-detail-more h2{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.045em;margin:0 0 16px}
+.service-detail-intro{max-width:720px;color:#59665c;font-size:15px;line-height:1.75;margin:0 0 30px}
+.service-detail-includes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.service-detail-includes article{display:flex;gap:16px;align-items:flex-start;padding:20px;background:#fff;border:1px solid #d9e5d7;border-radius:10px}
+.service-detail-includes article span{color:#6a9b3b;font-size:10px;font-weight:750;letter-spacing:.08em;padding-top:2px}
+.service-detail-includes article p{margin:0;color:#344238;font-size:13px;line-height:1.6}
+@media(max-width:640px){.service-detail-more{padding:54px 0 66px}.service-detail-includes{grid-template-columns:1fr}.service-detail-includes article{padding:17px}}
+/* Secondary service grid — ServicesSection (3 cols desktop like .service-grid; compact 2-up on mobile) */
+.process-cta{display:flex;justify-content:center;margin-top:40px}
+.more-services .section-heading{margin-bottom:34px}
+.accent-word{color:#3f8a2e}
+.service-grid-compact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.service-grid-compact>*{display:flex;min-width:0}
+@media(max-width:900px){.service-grid-compact{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.service-compact-card{min-height:unset;padding:22px 20px}.service-compact-card .service-accent,.service-compact-card .card-kicker,.service-compact-card ul,.service-compact-card .timeline{display:none}.service-compact-card .service-icon{width:44px;height:44px;margin-bottom:18px}.service-compact-card h3{font-size:17px;line-height:1.3;letter-spacing:-.025em;font-weight:650;margin:0 0 10px}.service-compact-card>p{font-size:13px;line-height:1.65;margin:0}.service-compact-card .card-link{position:absolute;margin:0;width:1px;height:1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.service-compact-card .card-link::after{content:"";position:absolute;inset:0;border-radius:inherit}}
+@media(max-width:640px){.more-services{margin-top:54px}.more-services .section-heading{margin-bottom:26px}.service-grid-compact{gap:14px}.service-compact-card{padding:18px 16px}.service-compact-card .service-icon{width:40px;height:40px;border-radius:11px;margin-bottom:14px}.service-compact-card h3{font-size:15px;margin-bottom:7px}.service-compact-card>p{font-size:12px}}
+@media(max-width:640px){.service-grid-compact>.service-item-landing-page-design,.service-grid-compact>.service-item-seo-content{width:100%;min-width:0;justify-self:stretch}.service-grid-compact>.service-item-landing-page-design>.service-compact-card,.service-grid-compact>.service-item-seo-content>.service-compact-card{width:100%;max-width:none;min-width:0;flex:1 1 100%}}

@@ -15,7 +15,7 @@ Single-page marketing site plus static service/case-study detail pages and a Mon
 ## Commands
 
 - `npm run dev` — Turbopack dev. In this checkout the native `@next/swc` binary fails to load ("not a valid Win32 application") and Turbopack aborts; use `npx next dev --webpack` here.
-- `npm run build` — production build (`next build --webpack`). It currently succeeds despite repeating the same SWC warnings (WASM fallback); ignore that noise.
+- `npm run build` — production build (`next build --webpack`). It currently succeeds despite repeating the same SWC warnings (WASM fallback); ignore that noise. **Do not run it while `next dev` is running** — it wipes `.next` under the dev server, which then dies with `ENOENT ... .next/dev/server/app/page.js` and 404/500s; stop dev first, then restart it after the build.
 - `npm run lint` — ESLint 9 flat config (`eslint-config-next/core-web-vitals`).
 - No tests, typecheck script, CI, or formatter. Verify with `npm run lint` and `npm run build`; do not invent `npm test` or `npm run typecheck`.
 

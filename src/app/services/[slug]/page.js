@@ -4,21 +4,23 @@ import SiteHeader from "../../../components/SiteHeader";
 import SiteFooter from "../../../components/SiteFooter";
 import Icon from "../../../components/Icon";
 import { Arrow, Check, Eyebrow } from "../../../components/ui";
-import { services } from "../../../data/content";
+import { services, additionalServices } from "../../../data/content";
+
+const allServices = [...services, ...additionalServices];
 
 export function generateStaticParams() {
-  return services.map(({ slug }) => ({ slug }));
+  return allServices.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const service = services.find((item) => item.slug === slug);
+  const service = allServices.find((item) => item.slug === slug);
   return service ? { title: `${service.title} | Horin Life`, description: service.copy } : {};
 }
 
 export default async function ServicePage({ params }) {
   const { slug } = await params;
-  const service = services.find((item) => item.slug === slug);
+  const service = allServices.find((item) => item.slug === slug);
   if (!service) notFound();
 
   return (
@@ -31,7 +33,7 @@ export default async function ServicePage({ params }) {
             <Eyebrow>{service.number}</Eyebrow>
             <h1>{service.title}</h1>
             <p>{service.copy}</p>
-            <Link className="button button-dark" href="/#contact">Talk with an engineer <Arrow /></Link>
+            <Link className="button button-dark button-cta" href="/#contact">Talk to an Engineer <Arrow /></Link>
           </div>
           <aside className="service-detail-card">
             <span className="service-detail-icon"><Icon name={service.icon} size={30} /></span>
@@ -40,6 +42,16 @@ export default async function ServicePage({ params }) {
             <ul>{service.points.map((point) => <Check key={point}>{point}</Check>)}</ul>
             <div className="detail-timeline"><span>Typical timeline</span><strong>{service.timeline}</strong></div>
           </aside>
+        </div>
+      </section>
+      <section className="service-detail-more">
+        <div className="container service-detail-more-inner">
+          <Eyebrow>THE DETAILS</Eyebrow>
+          <h2>Designed around the way you work</h2>
+          <p className="service-detail-intro">{service.detail.intro}</p>
+          <div className="service-detail-includes">
+            {service.detail.includes.map((item, index) => <article key={item}><span>0{index + 1}</span><p>{item}</p></article>)}
+          </div>
         </div>
       </section>
       <SiteFooter />
