@@ -22,7 +22,7 @@ export default function Hero() {
           <motion.div variants={reveal}><div className="pill"><span />CUSTOM DIGITAL SOLUTIONS FOR SMALL BUSINESSES</div></motion.div>
           <motion.h1 variants={reveal}>Digital solutions that help <br /> your business<br /><span className="underlined">grow.</span></motion.h1>
           <motion.p className="hero-copy" variants={reveal}>We engineer high-performance websites, streamlined web portals, and tailored standalone software tools. Designed specifically to eliminate repetitive manual friction and convert operational chaos into predictable revenue.</motion.p>
-          <motion.div className="hero-actions" variants={reveal}><a className="button button-dark" href="#contact">Get a Free Consultation <Arrow /></a><a className="button button-quiet" href="#work">Explore Our Work <Arrow diagonal /></a></motion.div>
+          <motion.div className="hero-actions" variants={reveal}><a className="button button-cta" href="#contact">Get a Free Consultation <Arrow /></a><a className="button button-quiet" href="#work">Explore Our Work <Arrow diagonal /></a></motion.div>
           <motion.div className="trust-row" variants={reveal}>
             <span><Icon name="business" /><b>Small Business Focus</b></span>
             <span><Icon name="engineers" /><b>Direct Senior Engineers</b></span>
