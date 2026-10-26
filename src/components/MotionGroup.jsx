@@ -7,12 +7,12 @@ const groupVariants = {
   visible: { transition: { delayChildren: 0.08, staggerChildren: 0.16 } },
 };
 const itemVariants = {
-  hidden: { opacity: 0, y: 36, scale: 0.96, filter: "blur(4px)" },
-  visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 0.78, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 28, scale: 0.985, filter: "blur(3px)" },
+  visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 0.68, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export function MotionGroup({ children, className }) {
-  return <motion.div className={className} variants={groupVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.16, margin: "0px 0px -36px 0px" }}>{children}</motion.div>;
+  return <motion.div className={className} variants={groupVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.16, margin: "0px 0px -24px 0px" }}>{children}</motion.div>;
 }
 
 export function MotionItem({ children, className, hover = false }) {

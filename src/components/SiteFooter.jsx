@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { inquiryEmail } from "../data/brand";
 
 function FooterIcon({ type }) {
   if (type === "facebook") {
@@ -60,9 +61,9 @@ export default function SiteFooter() {
         <div className="footer-bottom">
           <p>&copy; 2026 Horin Life. Built with care.</p>
           <nav aria-label="Policies">
-            <Link href="/#contact">Privacy policy</Link>
-            <Link href="/#contact">Terms of service</Link>
-            <Link href="/#contact">Security information</Link>
+            <a href={`mailto:${inquiryEmail}?subject=Privacy%20Policy`}>Privacy policy</a>
+            <a href={`mailto:${inquiryEmail}?subject=Terms%20of%20service`}>Terms of service</a>
+            <a href={`mailto:${inquiryEmail}?subject=Security%20information`}>Security information</a>
           </nav>
         </div>
       </div>
