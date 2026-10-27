@@ -9,11 +9,13 @@ const positions = [...services, ...additionalServices];
 export default function CandidateForm() {
   const [cv, setCv] = useState(null);
   const [fileError, setFileError] = useState("");
-  const [notice, setNotice] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
 
   function handleFileChange(event) {
     const file = event.target.files?.[0];
-    setNotice("");
+    setMessage("");
+    setStatus("idle");
     if (!file) {
       setCv(null);
       setFileError("");
@@ -39,9 +41,27 @@ export default function CandidateForm() {
     setFileError("");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setNotice("This application form is not connected yet. Your details and CV have not been sent or saved.");
+    const form = event.currentTarget;
+    if (fileError || !cv) return;
+    setStatus("sending");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/applications", { method: "POST", body: new FormData(form) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.message || "Please check the form and try again.");
+
+      form.reset();
+      setCv(null);
+      setFileError("");
+      setStatus("sent");
+      setMessage("Thank you. Your application and CV have been received.");
+    } catch (error) {
+      setStatus("error");
+      setMessage(error.message || "We could not send your application. Please try again.");
+    }
   }
 
   return (
@@ -61,8 +81,9 @@ export default function CandidateForm() {
       </label>
       <p className="candidate-file-help" id="cv-help">{cv ? `${cv.name} · ${(cv.size / 1024).toFixed(1)} KB` : "PDF files only. Maximum file size: 150 KB."}</p>
       {fileError && <p className="candidate-file-error" id="cv-error" role="alert">{fileError}</p>}
-      <button className="submit-button" type="submit" disabled={!cv}>Review application</button>
-      <p className="candidate-form-notice" role="status" aria-live="polite">{notice}</p>
+      <div className="form-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+      <button className="submit-button" type="submit" disabled={!cv || Boolean(fileError) || status === "sending"}>{status === "sending" ? "Sending application…" : status === "sent" ? "Application received" : "Submit application"}</button>
+      <p className={`candidate-form-notice${status === "error" ? " is-error" : ""}`} role="status" aria-live="polite">{message}</p>
     </form>
   );
 }

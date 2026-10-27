@@ -23,3 +23,8 @@ export async function getInquiriesCollection() {
   const client = await getClientPromise();
   return client.db(process.env.MONGODB_DB || "horinlife").collection("inquiries");
 }
+
+export async function getApplicationsCollection() {
+  const client = await getClientPromise();
+  return client.db(process.env.MONGODB_DB || "horinlife").collection("applications");
+}
