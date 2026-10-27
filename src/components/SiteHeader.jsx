@@ -11,6 +11,7 @@ const navigation = [
   ["Our work", "/#work"],
   ["How we work", "/#process"],
   ["Investment", "/#pricing"],
+  ["Join our team", "/careers"],
 ];
 
 export default function SiteHeader() {

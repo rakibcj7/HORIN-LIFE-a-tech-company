@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SiteHeader from "../../../components/SiteHeader";
@@ -18,14 +19,13 @@ export async function generateMetadata({ params }) {
   return service ? { title: `${service.title} | Horin Life`, description: service.copy } : {};
 }
 
-export default async function ServicePage({ params }) {
+async function ServiceDetails({ params }) {
   const { slug } = await params;
   const service = allServices.find((item) => item.slug === slug);
   if (!service) notFound();
 
   return (
-    <main>
-      <SiteHeader />
+      <>
       <section className="service-detail">
         <div className="container service-detail-grid">
           <div className="service-detail-copy">
@@ -54,6 +54,21 @@ export default async function ServicePage({ params }) {
           </div>
         </div>
       </section>
+      </>
+  );
+}
+
+function ServiceFallback() {
+  return <section className="service-detail"><div className="container"><p>Loading service details…</p></div></section>;
+}
+
+export default function ServicePage({ params }) {
+  return (
+    <main>
+      <SiteHeader />
+      <Suspense fallback={<ServiceFallback />}>
+        <ServiceDetails params={params} />
+      </Suspense>
       <SiteFooter />
     </main>
   );

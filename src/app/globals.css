@@ -370,3 +370,35 @@ html[data-animations="halted"] .button-cta::before,
 html[data-animations="halted"] .button-cta::after{animation-play-state:running !important}
 @media(prefers-reduced-motion:reduce){.testimonial-track{animation:none}}
 
+.careers-page{background:#f5f9f5;padding:92px 0 104px;min-height:calc(100vh - 180px)}
+.careers-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:76px;align-items:start}
+.careers-intro{position:sticky;top:125px;padding-top:30px}
+.careers-intro h1{font-size:clamp(42px,5.5vw,66px);line-height:1.02;letter-spacing:-.055em;margin:22px 0 18px;color:#17211d}
+.careers-intro>p{max-width:440px;color:#647067;font-size:15px;line-height:1.7;margin:0}
+.candidate-form{background:#fff;border:1px solid #e3ebe4;border-radius:12px;padding:34px 38px;box-shadow:0 16px 38px rgba(24,45,31,.08);display:flex;flex-direction:column;gap:17px}
+.candidate-form h2{font-size:25px;letter-spacing:-.035em;margin:0;color:#1b2820}
+.candidate-form-lead{font-size:13px;color:#717d74;margin:-10px 0 2px}
+.candidate-form label{display:flex;flex-direction:column;gap:8px;color:#68736b;font-size:10px;font-weight:750;letter-spacing:.04em}
+.candidate-form input:not([type=file]),.candidate-form select,.candidate-form input[type=file]{width:100%;border:1px solid #e2eae3;border-radius:4px;background:#f5f8f5;color:#354139;padding:13px;font:inherit;font-size:13px;letter-spacing:0}
+.candidate-form input[type=file]{padding:11px;background:#f5f8f5;cursor:pointer}
+.candidate-form input:focus,.candidate-form select:focus{outline:2px solid #9bd94f;outline-offset:1px}
+.candidate-file-help,.candidate-file-error,.candidate-form-notice{margin:0;font-size:11px;line-height:1.5;color:#758078}
+.candidate-file-error{color:#b13e35}
+.candidate-form .submit-button{margin-top:2px}
+.candidate-form .submit-button:disabled{cursor:not-allowed;opacity:.55}
+.candidate-form-notice{min-height:16px;text-align:center}
+.projects-more{display:flex;justify-content:center;margin-top:38px}
+.project-archive{background:#f7fbf7;min-height:70vh}
+.project-archive-heading{max-width:700px;margin:0 auto 48px;text-align:center}
+.project-archive-heading .eyebrow{justify-content:center}
+.project-archive-heading h1{font-size:clamp(40px,6vw,64px);line-height:1.02;letter-spacing:-.055em;margin:0 0 15px}
+.project-archive-heading p{font-size:15px;line-height:1.65;color:#647067;margin:0 0 14px}
+.project-archive-heading>small{font-size:11px;line-height:1.5;color:#78837b}
+.project-archive .case-copy h2{font-size:29px;line-height:1.14;letter-spacing:-.04em;margin:0 0 12px}
+.service-badge{position:absolute;top:15px;right:15px;z-index:2;border-radius:20px;padding:7px 9px;background:#e8efea;color:#4b5c4e;font-size:8px;font-weight:800;letter-spacing:.06em;line-height:1}
+.service-badge.badge-popular{background:#dff0c8;color:#416b20}
+.service-badge.badge-new{background:#17251d;color:#d9f7b2}
+.service-badge.badge-choice{background:#e8e2f4;color:#5e4b87}
+@media(max-width:640px){.projects-more{margin-top:28px}.project-archive{padding-top:66px}.project-archive-heading{margin-bottom:34px}.project-archive .case-copy h2{font-size:24px}}
+@media(max-width:760px){.careers-page{padding:65px 0 76px}.careers-layout{grid-template-columns:1fr;gap:32px}.careers-intro{position:static;padding-top:0}.careers-intro h1{font-size:clamp(40px,10vw,56px)}.careers-intro>p{font-size:14px}.candidate-form{padding:26px 22px}}
+

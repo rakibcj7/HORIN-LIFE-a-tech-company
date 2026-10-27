@@ -64,7 +64,7 @@ export default function SiteFooter() {
           <nav aria-label="Policies">
             <a href="/privacy">Privacy policy</a>
             <a href="/terms">Terms of service</a>
-            <a href={`mailto:${inquiryEmail}?subject=Security%20information`}>Security information</a>
+            <Link href="/careers">Join our team</Link>
           </nav>
         </div>
       </div>

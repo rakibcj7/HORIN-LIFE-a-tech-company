@@ -19,9 +19,9 @@ export default function PrivacyPage() {
         <h2>4. Third-Party Services</h2>
         <p>We may use third-party services for analytics, payment processing, and communication. These services have their own privacy policies.</p>
         <h2>5. Your Rights</h2>
-        <p>You have the right to access, correct, or delete your personal data. Contact us at contact@ashmatech.com for any requests.</p>
+        <p>You have the right to access, correct, or delete your personal data. Contact us for any requests.</p>
         <h2>6. Contact Us</h2>
-        <p>For questions about this policy, contact us at rakibhassan215095@gmail.com</p>
+        <p>For questions about this policy, contact us at info.horinlife@gmail.com</p>
       </div></section>
       <SiteFooter />
     </main>

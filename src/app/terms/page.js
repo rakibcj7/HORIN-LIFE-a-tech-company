@@ -23,7 +23,7 @@ export default function TermsPage() {
         <h2>6. Limitation of Liability</h2>
         <p>Our liability is limited to the total amount paid for services. We are not liable for indirect or consequential damages.</p>
         <h2>7. Contact</h2>
-        <p>For questions about these terms, contact us at rakibhassan215095@gmail.com</p>
+        <p>For questions about these terms, contact us at info.horinlife@gmail.com</p>
       </div></section>
       <SiteFooter />
     </main>

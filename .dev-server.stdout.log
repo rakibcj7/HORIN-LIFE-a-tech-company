@@ -2,11 +2,15 @@
 - Local:         http://localhost:3000
 - Network:       http://10.173.7.53:3000
 - Environments: .env
-✓ Ready in 968ms
+✓ Ready in 932ms
 ✓ Running next.config.mjs took 42ms
 - Cache Components enabled
 - Partial Prefetching enabled
 
+○ Compiling /careers/page ...
+ GET /careers 200 in 1307ms (next.js: 619ms, application-code: 688ms)
 ○ Compiling /page ...
- GET / 200 in 1891ms (next.js: 530ms, application-code: 1361ms)
- GET / 200 in 412ms (next.js: 3ms, application-code: 409ms)
+ GET / 200 in 588ms (next.js: 287ms, application-code: 301ms)
+ GET /projects 200 in 574ms (next.js: 354ms, application-code: 220ms)
+ GET /careers 200 in 71ms (next.js: 6ms, application-code: 65ms)
+ GET / 200 in 219ms (next.js: 12ms, application-code: 207ms)

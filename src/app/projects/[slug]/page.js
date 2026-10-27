@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SiteHeader from "../../../components/SiteHeader";
@@ -17,14 +18,13 @@ export async function generateMetadata({ params }) {
   return project ? { title: `${project.title} | Horin Life`, description: project.copy } : {};
 }
 
-export default async function ProjectPage({ params }) {
+async function ProjectDetails({ params }) {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
 
   return (
-    <main>
-      <SiteHeader />
+    <>
       <section className="project-detail-hero">
         <div className="container">
           <Link className="back-link" href="/#work"><Icon name="back" size={16} /> All case studies</Link>
@@ -63,6 +63,21 @@ export default async function ProjectPage({ params }) {
           <div className="project-next"><div><Eyebrow>HAVE A SIMILAR CHALLENGE?</Eyebrow><h2>Let&apos;s map a better way to work.</h2></div><Link className="button button-dark" href="/#contact">Talk with our team <Arrow /></Link></div>
         </div>
       </section>
+    </>
+  );
+}
+
+function ProjectFallback() {
+  return <section className="project-detail-hero"><div className="container"><p>Loading case study…</p></div></section>;
+}
+
+export default function ProjectPage({ params }) {
+  return (
+    <main>
+      <SiteHeader />
+      <Suspense fallback={<ProjectFallback />}>
+        <ProjectDetails params={params} />
+      </Suspense>
       <SiteFooter />
     </main>
   );
