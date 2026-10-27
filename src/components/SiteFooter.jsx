@@ -40,7 +40,7 @@ export default function SiteFooter() {
       <div className="container">
         <div className="footer-main">
           <div className="footer-about">
-            <Link className="footer-wordmark" href="/#top" aria-label="Horin Life home">HORIN<span>LIFE</span></Link>
+            <Link className="footer-wordmark" href="/#top" aria-label="Horin Life - Home">HORIN<span>LIFE</span></Link>
             <p>Engineering thoughtful digital products and dependable software for growing businesses.</p>
             <div className="footer-socials" aria-label="Contact and explore Horin Life">
               <a href="https://www.facebook.com/share/1EcxgWUJpj/" target="_blank" rel="noreferrer" aria-label="Visit Horin Life on Facebook"><FooterIcon type="facebook" /></a>

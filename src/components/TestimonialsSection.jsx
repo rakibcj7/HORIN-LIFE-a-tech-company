@@ -11,11 +11,11 @@ const sampleReviews = [
   { initials: "FO", quote: "Our field crew can keep working when the signal drops. Their orders sync later, so nobody has to re-enter the same information.", name: "Illustrative operations lead", business: "Forestry services team" },
 ];
 
-function ReviewCard({ review }) {
+function ReviewCard({ review, tabIndex }) {
   return (
-    <motion.article className="review-card" whileHover={{ y: -8, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+    <motion.article className="review-card" tabIndex={tabIndex} whileHover={{ y: -8, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
       <span className="review-sample-label">CUSTOMER REVIEW</span>
-      <div className="review-stars" aria-label="Five illustrative stars">{Array.from({ length: 5 }, (_, index) => <Icon key={index} name="star" size={16} />)}</div>
+      <div className="review-stars" role="img" aria-label="Five illustrative stars">{Array.from({ length: 5 }, (_, index) => <Icon key={index} name="star" size={16} />)}</div>
       <blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
       <div className="person"><b>{review.initials}</b><span><strong>{review.name}</strong><small>{review.business}</small></span></div>
     </motion.article>
@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
           <motion.div className="testimonial-reveal" initial={{ x: 90, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}>
             <div className="testimonial-track">
               <div className="testimonial-group">{sampleReviews.map((review) => <ReviewCard key={review.initials} review={review} />)}</div>
-              <div className="testimonial-group" aria-hidden="true">{sampleReviews.map((review) => <ReviewCard key={`${review.initials}-repeat`} review={review} />)}</div>
+              <div className="testimonial-group" aria-hidden="true">{sampleReviews.map((review) => <ReviewCard key={`${review.initials}-repeat`} review={review} tabIndex={-1} />)}</div>
             </div>
           </motion.div>
         </div>
