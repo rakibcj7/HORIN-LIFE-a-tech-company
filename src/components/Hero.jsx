@@ -1,10 +1,32 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Arrow } from "./ui";
 import Icon from "./Icon";
+
+function AnimatedStat({ value }) {
+  const m = value.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
+  const prefix = m ? m[1] : "";
+  const target = m ? parseFloat(m[2]) : 0;
+  const suffix = m ? m[3] : "";
+  const decimals = m && m[2].includes(".") ? m[2].split(".")[1].length : 0;
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    const start = performance.now();
+    const dur = 1800;
+    let f;
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      setN(target * p);
+      if (p < 1) f = requestAnimationFrame(tick);
+    };
+    f = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(f);
+  }, [target]);
+  return <>{prefix}{decimals ? n.toFixed(decimals) : Math.round(n)}{suffix}</>;
+}
 
 const intro = { hidden: {}, visible: { transition: { delayChildren: 0.16, staggerChildren: 0.15 } } };
 const reveal = { hidden: { opacity: 0, y: 30, filter: "blur(5px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.82, ease: [0.22, 1, 0.36, 1] } } };
@@ -24,11 +46,11 @@ export default function Hero() {
           <motion.p className="hero-copy" variants={reveal}>We engineer high-performance websites, streamlined web portals, and tailored standalone software tools. Designed specifically to eliminate repetitive manual friction and convert operational chaos into predictable revenue.</motion.p>
           <motion.div className="hero-actions" variants={reveal}><a className="button button-cta" href="#contact">Get a Free Consultation <Arrow /></a><a className="button button-quiet" href="#work">Explore Our Work <Arrow diagonal /></a></motion.div>
           <motion.div className="trust-row" variants={reveal}>
-            <span><Icon name="business" /><b>Small Business Focus</b></span>
+            <span><Icon name="business" /><b> Business Focus</b></span>
             <span><Icon name="engineers" /><b>Direct Senior Engineers</b></span>
             <span><Icon name="target" /><b>Fixed Scope Delivery</b></span>
           </motion.div>
-          <motion.div className="hero-stats" variants={reveal}><div><b>100%</b><span>Codebase Ownership</span></div><div><b>3.2x</b><span>Avg. Client Efficiency Gain</span></div><div><b>&lt; 30d</b><span>Typical Launch Turnaround</span></div><div><b>0 hrs</b><span>Account Executive Overhead</span></div></motion.div>
+          <motion.div className="hero-stats" variants={reveal}><div><b><AnimatedStat value="100%" /></b><span>Codebase Ownership</span></div><div><b><AnimatedStat value="3.2x" /></b><span>Avg. Client Efficiency Gain</span></div><div><b>&lt; <AnimatedStat value="30d" /></b><span>Typical Launch Turnaround</span></div><div><b><AnimatedStat value="0 hrs" /></b><span>Account Executive Overhead</span></div></motion.div>
         </motion.div>
         <motion.div className="deer-art-wrap" style={{ y: deerY, scale: deerScale }}>
           <Image className="deer-art" src="/hero-banner.jpg" alt="Deer moving through a quiet field" fill sizes="(max-width: 640px) 620px, 850px" priority />
