@@ -1,0 +1,12 @@
+▲ Next.js 16.4.2 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://10.173.7.53:3000
+- Environments: .env
+✓ Ready in 968ms
+✓ Running next.config.mjs took 42ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+○ Compiling /page ...
+ GET / 200 in 1891ms (next.js: 530ms, application-code: 1361ms)
+ GET / 200 in 412ms (next.js: 3ms, application-code: 409ms)

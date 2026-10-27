@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Arrow } from "./ui";
 import Icon from "./Icon";
+import { useCountUp } from "./AnimationController";
 
 function AnimatedStat({ value }) {
   const m = value.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
@@ -12,19 +13,7 @@ function AnimatedStat({ value }) {
   const target = m ? parseFloat(m[2]) : 0;
   const suffix = m ? m[3] : "";
   const decimals = m && m[2].includes(".") ? m[2].split(".")[1].length : 0;
-  const [n, setN] = useState(0);
-  useEffect(() => {
-    const start = performance.now();
-    const dur = 1800;
-    let f;
-    const tick = (now) => {
-      const p = Math.min((now - start) / dur, 1);
-      setN(target * p);
-      if (p < 1) f = requestAnimationFrame(tick);
-    };
-    f = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(f);
-  }, [target]);
+  const n = useCountUp(target, 1800);
   return <>{prefix}{decimals ? n.toFixed(decimals) : Math.round(n)}{suffix}</>;
 }
 

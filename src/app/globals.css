@@ -87,7 +87,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 @media(max-width:900px){.deer-art-wrap{right:-95px;width:780px;bottom:30px}}
 @media(max-width:640px){.deer-art-wrap{width:620px;right:-160px;bottom:10px;opacity:.28}}
 .testimonial-marquee{overflow:hidden;position:relative;margin:0 calc((1160px - 100vw)/2);padding:8px max(32px,calc((100vw - 1160px)/2)) 18px;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-.testimonial-track{display:flex;width:max-content;animation:review-marquee 24s linear 1}
+.testimonial-track{display:flex;width:max-content;animation:review-marquee 24s linear infinite}
 .testimonial-marquee:hover .testimonial-track,.testimonial-marquee:focus-within .testimonial-track{animation-play-state:paused}
 .testimonial-group{display:flex;gap:18px;padding-right:18px}
 .review-card{width:clamp(300px,31vw,365px);min-height:245px;background:#f0f5f1;border:1px solid #e5ece6;border-radius:9px;padding:23px;display:flex;flex-direction:column;box-shadow:0 5px 14px rgba(24,45,31,.035)}
@@ -97,6 +97,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .review-card .person{margin-top:auto}
 @keyframes review-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:640px){.testimonial-marquee{margin:0 -18px;padding:8px 18px 16px;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}.testimonial-group{gap:12px;padding-right:12px}.review-card{width:min(82vw,340px);min-height:240px;padding:20px}}
+@media(max-width:900px){.testimonial-marquee{margin-left:calc((720px - 100vw)/2);margin-right:calc((720px - 100vw)/2);padding-left:22px;padding-right:22px}}
+@media(max-width:640px){.testimonial-marquee{margin-left:-18px;margin-right:-18px;padding-left:10px;padding-right:10px}}
 .faq-item{background:#fff;border-radius:7px;margin:7px 0;overflow:hidden;box-shadow:0 2px 8px rgba(24,45,31,.025)}
 .faq-question{width:100%;border:0;background:transparent;padding:19px 23px;display:flex;justify-content:space-between;align-items:center;text-align:left;gap:18px;color:var(--ink);font-size:14px;font-weight:650;cursor:pointer}
 .faq-question span{flex:none;font-size:20px;color:#78827b;transition:transform .25s ease}
@@ -350,4 +352,21 @@ a:hover .arrow{transform:translateX(4px)}
 .about-principle p{max-width:570px;margin:0;color:#5f6c63;font-size:12.5px;line-height:1.65}
 @media(max-width:900px){.about-intro{grid-template-columns:1fr;gap:30px;align-items:start}.about-copy{max-width:640px}.about-stats{margin-top:48px}.about-principles{grid-template-columns:1fr;gap:28px;margin-top:60px}.about-principles-heading p{max-width:520px}}
 @media(max-width:640px){.about-section{padding-top:72px;padding-bottom:76px}.about-heading h2{font-size:clamp(34px,9.6vw,48px)}.about-route{gap:8px;font-size:9px}.about-route-line{width:18px}.about-copy p,.about-copy p:first-child{font-size:13px}.about-stats{grid-template-columns:1fr;margin-top:40px;border-bottom:0}.about-stat{padding:20px 0;border-right:0;border-bottom:1px solid #dbe5d8}.about-stat-item:last-child .about-stat{border-bottom:0}.about-stat b{font-size:40px;margin-bottom:9px}.about-stat small{max-width:280px}.about-principles{margin-top:52px}.about-principles-heading h3{font-size:30px}.about-principle{grid-template-columns:30px 1fr;gap:12px;padding:20px 0}.about-principle-number{grid-row:1 / span 2}.about-principle-icon{width:32px;height:32px;border-radius:8px}.about-principle h4{font-size:15px}.about-principle p{font-size:12px}}
+
+/* Scroll-controlled animation state — AnimationController.jsx
+   The controller sets html[data-animations="halted"] when the viewport reaches
+   the end of the document, freezing every CSS keyframe animation exactly where
+   it is. Scrolling away from the bottom resumes it from that frame. Interactive
+   mobile-menu animations stay live so the header still works at the foot of the
+   page. A refresh reloads the document, so every animation starts over. */
+html[data-animations="halted"] *,
+html[data-animations="halted"] *::before,
+html[data-animations="halted"] *::after{animation-play-state:paused !important}
+html[data-animations="halted"] .site-header nav.nav-open,
+html[data-animations="halted"] .site-header nav.nav-open>a,
+html[data-animations="halted"] .testimonial-track,
+html[data-animations="halted"] .button-cta,
+html[data-animations="halted"] .button-cta::before,
+html[data-animations="halted"] .button-cta::after{animation-play-state:running !important}
+@media(prefers-reduced-motion:reduce){.testimonial-track{animation:none}}
 

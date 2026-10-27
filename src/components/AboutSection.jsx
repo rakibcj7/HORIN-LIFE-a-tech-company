@@ -1,29 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
 import { about } from "../data/content";
 import { Arrow, Eyebrow } from "./ui";
 import Icon from "./Icon";
 import { MotionGroup, MotionItem } from "./MotionGroup";
 import ScrollReveal from "./ScrollReveal";
+import { useCountUp } from "./AnimationController";
 
 function AnimatedValue({ value }) {
   const match = value.match(/^(\d+)(.*)$/);
   const target = match ? parseInt(match[1], 10) : 0;
   const suffix = match ? match[2] : "";
   const pad = match && match[1].length > 1 && match[1].startsWith("0") ? match[1].length : 0;
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    let frame;
-    const start = performance.now();
-    const duration = 2200;
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      setCount(Math.round(target * progress));
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [target]);
+  const count = Math.round(useCountUp(target, 2200));
   const display = pad ? String(count).padStart(pad, "0") : count;
   return <>{display}{suffix}</>;
 }
