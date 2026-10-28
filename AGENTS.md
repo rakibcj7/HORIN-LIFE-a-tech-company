@@ -25,10 +25,12 @@ Single-page marketing site plus static service/case-study detail pages, privacy/
 - Dynamic route `params` are Promises; keep `await params` as in `src/app/services/[slug]/page.js`.
 - The Tailwind loader is configured under `turbopack.rules`, but this checkout must run webpack (`--webpack`) and there is no PostCSS config, so `@import "tailwindcss"` produces no utilities in dev or production. Classes such as `h-full`, `flex`, and `antialiased` in `layout.js` have no effect. Add styles as classes in `src/app/globals.css`; add `@tailwindcss/postcss` before relying on utility classes.
 - Bundled docs for this exact version: `node_modules/next/dist/docs/`.
+- **Icons must be RGBA PNGs.** Next.js 16 rejects RGB PNGs (`colorType 2`) at build time with `Processing image failed` / `The PNG is not in RGBA format!`. `src/app/favicon.ico`, `icon.png`, and `apple-icon.png` are affected. Convert with `sharp` (`sharp(p).ensureAlpha().png()`) and rebuild the ICO container by hand — `sharp` 0.35 has no ICO output.
 
 ## Where things live
 
 - `src/app/page.js` renders `src/components/LandingPage.jsx`, which orders the section components; each landing section is its own component under `src/components/`. Section IDs (`#about`, `#services`, `#work`, `#process`, `#pricing`, `#testimonials`, `#faq`, `#contact`) are the navigation contract shared by the header and footer.
+- Standalone full pages (each brings its own `<SiteHeader>`/`<SiteFooter>`): `src/app/careers/page.js`, `src/app/projects/page.js` (case-study archive), `src/app/privacy/page.js`, `src/app/terms/page.js`. The landing page's case-studies section is separate from the `/projects` archive.
 - `src/data/content.js` is the copy/data source for `services` (3 featured cards), `additionalServices` (10 compact cards), `projects`, `frictions`, `process`, `faqs`, and `about` (stats/principles). Service `[slug]` pages and `generateStaticParams` use `services + additionalServices`; project `[slug]` pages use `projects`. Edit content there, not the pages. `src/data/brand.js` holds the public inquiry email.
 - Adding or renaming a service also needs an `Icon` shape in `src/components/Icon.jsx` (unknown names silently fall back to the application icon) and an update to the hard-coded counts in `src/components/ServicesSection.jsx` ("03 DISTINCT DOMAINS", "10 ADDITIONAL SERVICES").
 - Pricing copy in `PricingSection.jsx` and testimonial quotes in `TestimonialsSection.jsx` are hard-coded in those components, not in `content.js`. Legal copy is inline in `src/app/privacy/page.js` and `src/app/terms/page.js`.
@@ -44,3 +46,10 @@ Single-page marketing site plus static service/case-study detail pages, privacy/
 - Inserts into MongoDB collection `inquiries` with `status: "new"` and `createdAt`. Requires `MONGODB_URI`; optional `MONGODB_DB` (default `horinlife`). Missing config returns 503.
 - Resend notification is optional and runs only when `RESEND_API_KEY`, `INQUIRY_NOTIFICATION_EMAIL`, and `RESEND_FROM_EMAIL` are all set; a failed send is logged and still returns success after the insert.
 - `.env.local` may not exist yet; copy `.env.example` and set the values there. `.env*` is gitignored. Keep credentials server-side — no `NEXT_PUBLIC_` prefix.
+
+## Career applications API
+
+- `src/app/api/applications/route.js` is a separate `POST` route for the `/careers` page candidate form (`src/components/CandidateForm.jsx`). It accepts `multipart/form-data` with `name`, `email`, `position`, `cv` (PDF ≤ 150 KB, verified by magic bytes), and a `website` honeypot.
+- Rate-limits 3 requests/15 min per IP. Inserts into MongoDB collection `applications` with `status: "new"`, `createdAt`, and the CV stored as a binary Buffer (filename, contentType, size, data).
+- Resend notification is optional and runs only when `RESEND_API_KEY`, `CAREER_NOTIFICATION_EMAIL`, and `RESEND_FROM_EMAIL` are all set; the CV is attached as base64. Missing config returns 503.
+- The `position` field must match a service title from `services + additionalServices` (built from `src/data/content.js`); adding a new position requires adding it to that list.

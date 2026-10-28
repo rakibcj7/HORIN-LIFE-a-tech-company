@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import AnimationController from "../components/AnimationController";
 import "./globals.css";
 
@@ -83,6 +84,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-full flex flex-col">
         <AnimationController>{children}</AnimationController>
+        <Analytics />
       </body>
     </html>
   );

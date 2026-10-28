@@ -95,6 +95,27 @@ export default function AnimationController({ children }) {
     };
   }, []);
 
+  /* A normal client-side navigation (e.g. footer "Join our team") does not
+     restore the previous scroll position, so without this the new page loads
+     still scrolled to the old footer and the user never sees the top. */
+  useEffect(() => {
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+    const frame = requestAnimationFrame(() => {
+      root.style.scrollBehavior = previousBehavior;
+    });
+    return () => {
+      cancelAnimationFrame(frame);
+      root.style.scrollBehavior = previousBehavior;
+    };
+  }, [pathname]);
+
   /* Re-measure whenever the route changes, the viewport changes, or content
      (fonts, images, lazy sections) makes the document taller or shorter. */
   useEffect(() => {
