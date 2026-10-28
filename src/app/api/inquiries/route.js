@@ -92,14 +92,23 @@ export async function POST(request) {
             `Budget: ${inquiry.budget}`,
             "",
             inquiry.summary || "No project summary provided.",
-          ].join("\n"),
+          ].join("\\n"),
         });
         if (result.error) console.error("Inquiry email notification could not be sent.");
       } catch {
         console.error("Inquiry email notification could not be sent.");
       }
+      try {
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL,
+          to: inquiry.email,
+          subject: "We received your request — Horin Life",
+          text: `Hi ${inquiry.name},\\n\\nThank you for reaching out. We have received your request and will connect with you within 24 hours.\\n\\n— Horin Life`,
+        });
+      } catch {
+        console.error("Inquiry confirmation email could not be sent.");
+      }
     }
-
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch {
     return NextResponse.json({ message: "We could not save your inquiry just now. Please email us directly." }, { status: 503 });

@@ -96,12 +96,22 @@ export async function POST(request) {
           to: process.env.CAREER_NOTIFICATION_EMAIL,
           replyTo: email,
           subject: `Job application: ${position} — ${name}`,
-          text: [`Name: ${name}`, `Email: ${email}`, `Desired position: ${position}`, `Received: ${createdAt.toISOString()}`].join("\n"),
+          text: [`Name: ${name}`, `Email: ${email}`, `Desired position: ${position}`, `Received: ${createdAt.toISOString()}`].join("\\n"),
           attachments: [{ filename: cv.name.slice(0, 255), content: cvBytes.toString("base64") }],
         });
         if (result.error) console.error("Career application notification could not be sent.");
       } catch {
         console.error("Career application notification could not be sent.");
+      }
+      try {
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL,
+          to: email,
+          subject: "We received your application — Horin Life",
+          text: `Hi ${name},\\n\\nThank you for applying. We have received your application and will connect with you within 24 hours.\\n\\n— Horin Life`,
+        });
+      } catch {
+        console.error("Career application confirmation email could not be sent.");
       }
     }
 
