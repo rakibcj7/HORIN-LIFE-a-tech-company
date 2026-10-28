@@ -108,7 +108,7 @@ export async function POST(request) {
           from: process.env.RESEND_FROM_EMAIL,
           to: email,
           subject: "We received your application — Horin Life",
-          text: `Hi ${name},\\n\\nThank you for applying. We have received your application and will connect with you within 24 hours.\\n\\n— Horin Life`,
+          text: `Dear ${name}, Thank you for applying to Horin Life for the ${position} role. We have successfully received your application and CV. Our team will review your submission and connect with you within 24 hours regarding next steps. If you need to update any details in the meantime, simply reply to this email.Warm regards,Horin Life Team`,
         }).catch(() => console.error("Career application confirmation email could not be sent."));
       } catch {
         console.error("Career application confirmation email could not be sent.");

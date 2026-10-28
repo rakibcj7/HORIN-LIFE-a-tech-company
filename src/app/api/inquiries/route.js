@@ -103,7 +103,7 @@ export async function POST(request) {
           from: process.env.RESEND_FROM_EMAIL,
           to: inquiry.email,
           subject: "We received your request — Horin Life",
-          text: `Hi ${inquiry.name},\\n\\nThank you for reaching out. We have received your request and will connect with you within 24 hours.\\n\\n— Horin Life`,
+          text: `Dear ${inquiry.name},Thank you for reaching out to Horin Life. We have successfully received your inquiry regarding ${inquiry.service}.Our team will review your request and connect with you within 24 hours to discuss next steps.If you have any additional details to share in the meantime, simply reply to this email.Warm regards,Horin Life Team`,
         }).catch(() => console.error("Inquiry confirmation email could not be sent."));
       } catch {
         console.error("Inquiry confirmation email could not be sent.");
