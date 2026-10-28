@@ -1,12 +1,27 @@
+import dns from "node:dns";
 import { MongoClient } from "mongodb";
 
 const options = { maxPoolSize: 10, serverSelectionTimeoutMS: 5000 };
 
+// Some local DNS forwarders refuse SRV queries even though the system's
+// configured resolvers can answer them. Let Node's MongoDB SRV lookup use the
+// same DNS servers that the operating system uses.
+function configureSystemDnsForSrv(uri) {
+  if (!uri.startsWith("mongodb+srv://")) return;
+
+  const servers = dns.getServers();
+  if (servers.length === 1 && servers[0] === "127.0.0.1") {
+    const systemServers = process.env.DNS_SERVERS?.split(",").map((server) => server.trim()).filter(Boolean);
+    if (systemServers?.length) dns.setServers(systemServers);
+  }
+}
+
 let clientPromise;
 
-function getClientPromise() {
+export async function connectToMongoDB() {
   const uri = process.env.MONGODB_URI;
   if (!uri) throw new Error("MONGODB_URI is not configured");
+  configureSystemDnsForSrv(uri);
 
   if (process.env.NODE_ENV === "development") {
     if (!global._mongoClientPromise) {
@@ -19,12 +34,26 @@ function getClientPromise() {
   return clientPromise;
 }
 
+// Call only when the application is shutting down. Next.js manages server
+// process lifetime, so route handlers should reuse the client instead.
+export async function disconnectFromMongoDB() {
+  const promise = process.env.NODE_ENV === "development"
+    ? global._mongoClientPromise
+    : clientPromise;
+  if (!promise) return;
+
+  const client = await promise;
+  await client.close();
+  if (process.env.NODE_ENV === "development") delete global._mongoClientPromise;
+  else clientPromise = undefined;
+}
+
 export async function getInquiriesCollection() {
-  const client = await getClientPromise();
+  const client = await connectToMongoDB();
   return client.db(process.env.MONGODB_DB || "horinlife").collection("inquiries");
 }
 
 export async function getApplicationsCollection() {
-  const client = await getClientPromise();
+  const client = await connectToMongoDB();
   return client.db(process.env.MONGODB_DB || "horinlife").collection("applications");
 }
