@@ -88,7 +88,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 @media(max-width:640px){.deer-art-wrap{width:620px;right:-160px;bottom:10px;opacity:.28}}
 .testimonial-marquee{overflow:hidden;position:relative;margin:0 calc((1160px - 100vw)/2);padding:8px max(32px,calc((100vw - 1160px)/2)) 18px;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
 .testimonial-track{display:flex;width:max-content;animation:review-marquee 24s linear infinite}
-.testimonial-marquee:hover .testimonial-track,.testimonial-marquee:focus-within .testimonial-track{animation-play-state:paused}
+.testimonial-marquee:hover .testimonial-track,.testimonial-marquee:focus-within .testimonial-track,.testimonial-marquee:active .testimonial-track{animation-play-state:paused}
 .testimonial-group{display:flex;gap:18px;padding-right:18px}
 .review-card{width:clamp(300px,31vw,365px);min-height:245px;background:#f0f5f1;border:1px solid #e5ece6;border-radius:9px;padding:23px;display:flex;flex-direction:column;box-shadow:0 5px 14px rgba(24,45,31,.035)}
 .review-sample-label{font-size:9px;font-weight:750;letter-spacing:.08em;color:#6d923f}
