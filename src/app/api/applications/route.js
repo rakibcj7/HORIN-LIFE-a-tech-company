@@ -104,12 +104,12 @@ export async function POST(request) {
         console.error("Career application notification could not be sent.");
       }
       try {
-        await resend.emails.send({
+        resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL,
           to: email,
           subject: "We received your application — Horin Life",
           text: `Hi ${name},\\n\\nThank you for applying. We have received your application and will connect with you within 24 hours.\\n\\n— Horin Life`,
-        });
+        }).catch(() => console.error("Career application confirmation email could not be sent."));
       } catch {
         console.error("Career application confirmation email could not be sent.");
       }
