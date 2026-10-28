@@ -402,3 +402,4 @@ html[data-animations="halted"] .button-cta::after{animation-play-state:running !
 @media(max-width:640px){.projects-more{margin-top:28px}.project-archive{padding-top:66px}.project-archive-heading{margin-bottom:34px}.project-archive .case-copy h2{font-size:24px}}
 @media(max-width:760px){.careers-page{padding:65px 0 76px}.careers-layout{grid-template-columns:1fr;gap:32px}.careers-intro{position:static;padding-top:0}.careers-intro h1{font-size:clamp(40px,10vw,56px)}.careers-intro>p{font-size:14px}.candidate-form{padding:26px 22px}}
 
+.candidate-notice-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}.candidate-notice{background:#fff;border-radius:12px;padding:28px 32px;max-width:460px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:14px}.candidate-notice h3{margin:0;font-size:20px}.candidate-notice p{margin:0;line-height:1.5}
