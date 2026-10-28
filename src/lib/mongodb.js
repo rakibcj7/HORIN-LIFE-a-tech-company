@@ -8,12 +8,9 @@ const options = { maxPoolSize: 10, serverSelectionTimeoutMS: 5000 };
 // same DNS servers that the operating system uses.
 function configureSystemDnsForSrv(uri) {
   if (!uri.startsWith("mongodb+srv://")) return;
-
-  const servers = dns.getServers();
-  if (servers.length === 1 && servers[0] === "127.0.0.1") {
-    const systemServers = process.env.DNS_SERVERS?.split(",").map((server) => server.trim()).filter(Boolean);
-    if (systemServers?.length) dns.setServers(systemServers);
-  }
+  const envServers = process.env.DNS_SERVERS?.split(",").map((server) => server.trim()).filter(Boolean);
+  const servers = envServers?.length ? envServers : ["8.8.8.8", "1.1.1.1"];
+  dns.setServers(servers);
 }
 
 let clientPromise;
@@ -25,7 +22,10 @@ export async function connectToMongoDB() {
 
   if (process.env.NODE_ENV === "development") {
     if (!global._mongoClientPromise) {
-      global._mongoClientPromise = new MongoClient(uri, options).connect();
+      global._mongoClientPromise = new MongoClient(uri, options).connect().catch((error) => {
+        delete global._mongoClientPromise;
+        throw error;
+      });
     }
     return global._mongoClientPromise;
   }
