@@ -135,7 +135,7 @@ export async function POST(request) {
   if (!databaseSaved) {
     if (!hasInquiryEmailConfig()) {
       console.error("Inquiry could not be delivered: Resend fallback is not fully configured.");
-      return NextResponse.json({ message: "We could not receive your inquiry just now. Please email us directly." }, { status: 503 });
+      return NextResponse.json({ code: "EMAIL_NOT_CONFIGURED", message: "We could not receive your inquiry just now. Please email us directly." }, { status: 503 });
     }
 
     try {
@@ -150,7 +150,7 @@ export async function POST(request) {
         code: error?.code || "unknown",
         message: error?.message || "No error message",
       });
-      return NextResponse.json({ message: "We could not receive your inquiry just now. Please email us directly." }, { status: 503 });
+      return NextResponse.json({ code: "EMAIL_DELIVERY_FAILED", message: "We could not receive your inquiry just now. Please email us directly." }, { status: 503 });
     }
   }
 
