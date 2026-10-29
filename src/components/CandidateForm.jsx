@@ -8,6 +8,7 @@ const positions = [...services, ...additionalServices];
 
 export default function CandidateForm() {
   const [cv, setCv] = useState(null);
+  const [portfolio, setPortfolio] = useState("");
   const [fileError, setFileError] = useState("");
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
@@ -52,10 +53,16 @@ export default function CandidateForm() {
     setFileError("");
   }
 
+  function handlePortfolioChange(event) {
+    setMessage("");
+    setStatus("idle");
+    setPortfolio(event.target.value.trim());
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
-    if (fileError || !cv) return;
+    if (fileError || (!cv && !portfolio)) return;
     setStatus("sending");
     setMessage("");
 
@@ -66,9 +73,10 @@ export default function CandidateForm() {
 
       form.reset();
       setCv(null);
+      setPortfolio("");
       setFileError("");
       setStatus("sent");
-      setMessage("Thank you. Your application and CV have been received.");
+      setMessage("Thank you. Your application has been received.");
     } catch (error) {
       setStatus("error");
       setMessage(error.message || "We could not send your application. Please try again.");
@@ -78,7 +86,7 @@ export default function CandidateForm() {
   return (
     <form className="candidate-form" onSubmit={handleSubmit}>
       <h2>Introduce yourself</h2>
-      <p className="candidate-form-lead">Share your details and attach your CV as a PDF.</p>
+      <p className="candidate-form-lead">Share your details and attach your CV as a PDF, or link to your portfolio.</p>
       <label>FULL NAME *<input required name="name" maxLength={100} autoComplete="name" placeholder="Your name" onFocus={promptNotice} /></label>
       <label>EMAIL ADDRESS *<input required type="email" name="email" maxLength={254} autoComplete="email" placeholder="you@example.com" onFocus={promptNotice} /></label>
       <label>DESIRED POSITION *
@@ -87,20 +95,24 @@ export default function CandidateForm() {
           {positions.map((service) => <option key={service.slug} value={service.title}>{service.title}</option>)}
         </select>
       </label>
-      <label>CV (PDF, MAX 150 KB) *
-        <input required name="cv" type="file" accept=".pdf,application/pdf" onChange={handleFileChange} onFocus={promptNotice} aria-describedby="cv-help cv-error" />
+      <label>CV (PDF, MAX 150 KB)
+        <input name="cv" type="file" accept=".pdf,application/pdf" onChange={handleFileChange} onFocus={promptNotice} aria-describedby="cv-help cv-error" />
       </label>
       <p className="candidate-file-help" id="cv-help">{cv ? `${cv.name} · ${(cv.size / 1024).toFixed(1)} KB` : "PDF files only. Maximum file size: 150 KB."}</p>
       {fileError && <p className="candidate-file-error" id="cv-error" role="alert">{fileError}</p>}
+      <label>PORTFOLIO LINK
+        <input name="portfolio" type="url" maxLength={2048} placeholder="https://your-portfolio.com" onChange={handlePortfolioChange} onFocus={promptNotice} />
+      </label>
+      <p className="candidate-file-help">Provide at least one: a CV upload or a portfolio link.</p>
       <div className="form-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-      <button className="submit-button" type="submit" disabled={!cv || Boolean(fileError) || status === "sending"}>{status === "sending" ? "Sending application…" : status === "sent" ? "Application received" : "Submit application"}</button>
+      <button className="submit-button" type="submit" disabled={!cv && !portfolio || Boolean(fileError) || status === "sending"}>{status === "sending" ? "Sending application…" : status === "sent" ? "Application received" : "Submit application"}</button>
       <p className={`candidate-form-notice${status === "error" ? " is-error" : ""}`} role="status" aria-live="polite">{message}</p>
       {showNotice && (
         <div className="candidate-notice-overlay" role="dialog" aria-modal="true" aria-labelledby="candidate-notice-title">
           <div className="candidate-notice">
             <h3 id="candidate-notice-title">Before You Apply</h3>
-            <p>Please note that our current opportunities are <strong>project-based, not fixed-salary positions</strong>. There are no fixed clock-in or clock-out hours. You’ll work flexibly while meeting agreed deadlines and project deliverables.</p>
-            <p>If you’re comfortable with this arrangement, you may proceed with your application.</p>
+            <p>Please note that our current opportunities are <strong>project-based, not fixed-salary positions</strong>. There are no fixed clock-in or clock-out hours. You&#39;ll work flexibly while meeting agreed deadlines and project deliverables.</p>
+            <p>If you&#39;re comfortable with this arrangement, you may proceed with your application.</p>
             <button type="button" className="submit-button" onClick={dismissNotice}>I understand</button>
           </div>
         </div>
