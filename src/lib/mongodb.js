@@ -5,8 +5,8 @@ const options = { maxPoolSize: 10, serverSelectionTimeoutMS: 5000 };
 let clientPromise;
 
 export async function connectToMongoDB() {
-  const uri = process.env.MONGODB_URI;
-  if (!uri) throw new Error("MONGODB_URI is not configured");
+  const uri = process.env.MONGODB_URI || process.env.DATABASE_URL;
+  if (!uri) throw new Error("MONGODB_URI or DATABASE_URL is not configured");
 
   if (process.env.NODE_ENV === "development") {
     if (!global._mongoClientPromise) {

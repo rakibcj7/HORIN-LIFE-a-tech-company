@@ -27,10 +27,10 @@ export default function InquiryForm() {
 
       form.reset();
       setStatus("sent");
-      setMessage("Thanks — your inquiry is saved. We’ll be in touch within 24 business hours.");
+      setMessage("Thanks, your inquiry was received. We will be in touch within 24 business hours.");
     } catch (error) {
       setStatus("error");
-      setMessage(error.message || "We couldn’t save your inquiry. Please email us directly.");
+      setMessage(error.message || "We could not receive your inquiry. Please email us directly.");
     }
   }
 
@@ -41,9 +41,9 @@ export default function InquiryForm() {
       <label>ESTIMATED INVESTMENT BUDGET<select name="budget" defaultValue="RM 1,500 (Website Sprint)"><option>RM 1,500 (Website Sprint)</option><option>RM 2,500 (Custom Web Application)</option><option>Let&apos;s discuss</option></select></label>
       <label>PROJECT SUMMARY &amp; CURRENT BOTTLENECK<textarea name="summary" maxLength={3000} placeholder="Tell us what process is currently manual, or what system you need built..." rows={3} /></label>
       <div className="form-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-      <button className="submit-button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending inquiry…" : status === "sent" ? "Inquiry sent" : "Send Inquiry & Schedule Call"} <Arrow /></button>
+      <button className="submit-button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending inquiry..." : status === "sent" ? "Inquiry sent" : "Send Inquiry & Schedule Call"} <Arrow /></button>
       <p className={`form-status${status === "error" ? " is-error" : ""}`} role="status" aria-live="polite">{message}{status === "error" && <> <a href={`mailto:${inquiryEmail}`}>{inquiryEmail}</a></>}</p>
-      <p className="privacy-note">We store your details to manage this inquiry and respond to you. We do not sell your information.</p>
+      <p className="privacy-note">We use your details to manage this inquiry and respond to you. We do not sell your information.</p>
     </form>
   );
 }
