@@ -117,6 +117,7 @@ export async function POST(request) {
     }
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch {
+    console.error("Inquiry could not be saved to MongoDB.");
     return NextResponse.json({ message: "We could not save your inquiry just now. Please email us directly." }, { status: 503 });
   }
 }
