@@ -213,6 +213,17 @@ export const additionalServices = [
     action: "Explore Service",
     timeline: "Monthly",
   },
+  {
+    number: "SERVICE 14",
+    slug: "logo-design-brand-identity",
+    icon: "palette",
+    title: "Logo Design & Brand Identity",
+    copy: "Distinctive logos and a cohesive brand identity system that makes your business recognizable and consistent across every touchpoint.",
+    points: ["Logo and mark variations", "Color palette and typography", "Brand guidelines and asset kit"],
+    detail: { intro: "A strong brand identity makes your business easy to recognize and trust. We craft a flexible logo system and supporting visuals that work across web, print, and social channels.", includes: ["Logo concepts and refinement rounds", "Color, typography, and usage rules", "Brand guidelines and reusable asset files", "Social and marketing application examples"] },
+    action: "Explore Service",
+    timeline: "2-3 wks",
+  },
 ];
 
 export const frictions = [
