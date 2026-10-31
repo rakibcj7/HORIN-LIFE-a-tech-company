@@ -11,13 +11,14 @@ const reviewData = {
   rating: 5,
   name: "Abid Hassan",
   role: "Owner",
-  company: "Love fore Care page",
+  company: "Love for Care page",
   location: "Bangladesh",
   imageSrc: "/reviews/abid-hassan.jpg",
 };
 
 function ReviewCard() {
   return (
+    <div className='grid justify-center'>
     <motion.div
       className="review-card-new"
       whileHover={{ y: -6 }}
@@ -53,8 +54,10 @@ function ReviewCard() {
         </div>
       </div>
     </motion.div>
+      </div>
   );
 }
+
 
 export default function TestimonialsSection() {
   return (
@@ -63,12 +66,13 @@ export default function TestimonialsSection() {
         <ScrollReveal className="center-heading">
           <Eyebrow centered>FEEDBACK</Eyebrow>
           <h2>Small changes.<br />More room to grow.</h2>
-          <p>See what our customers have to say.</p>
+        <div className='flex justify-center'>  <p>See what our customers have to say.</p></div>
         </ScrollReveal>
         <div className="testimonial-single-wrap">
           <ReviewCard />
         </div>
       </div>
     </section>
+  
   );
 }

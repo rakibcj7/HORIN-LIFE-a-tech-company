@@ -41,7 +41,6 @@ async function ProjectDetails({ params }) {
             </div>
             <div className="project-detail-visual"><ProjectDashboard kind={project.visual} /></div>
           </div>
-          <p className="project-disclosure">Illustrative portfolio concept. The project narrative, client, and results on this page are fictional examples.</p>
         </div>
       </section>
 
@@ -49,7 +48,7 @@ async function ProjectDetails({ params }) {
         <div className="container">
           <div className="project-metrics">
             {project.stats.map(([number, label]) => <div key={label}><b>{number}</b><span>{label}</span></div>)}
-            <div><b>{project.detail.timeline}</b><span>Illustrative delivery window</span></div>
+            <div><b>{project.detail.timeline}</b><span>Delivery timeline</span></div>
           </div>
 
           <div className="project-story-grid">

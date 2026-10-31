@@ -36,6 +36,18 @@ export default function PricingSection() {
               <a className="price-action" href="#contact">Discuss Application Project</a>
             </article>
           </MotionItem>
+          <MotionItem hover>
+            <article className="price-card">
+              <div className="price-meta"><span>MODEL 03</span><b>One-Month Launch</b></div>
+              <h3>Business Setup</h3>
+              <p>A practical one-month package to establish your online presence and build a consistent starting point for marketing.</p>
+              <div className="price">RM 4,000</div>
+              <small className="price-caption">One-month package · scope agreed before work begins</small>
+              <hr /><b className="included">WHAT IS INCLUDED:</b>
+              <ul><Check>Business website setup and launch</Check><Check>SEO foundations and on-page optimization</Check><Check>Social media profile setup and content plan</Check><Check>One month of social media marketing support</Check><Check>Related business setup guidance</Check></ul>
+              <a className="price-action" href="#contact">Discuss Business Setup</a>
+            </article>
+          </MotionItem>
         </MotionGroup>
       </div>
     </section>

@@ -15,8 +15,8 @@ export default function FaqSection() {
       <div className="container">
         <ScrollReveal className="center-heading">
           <Eyebrow centered>COMMON INQUIRIES</Eyebrow>
-          <h2>Clear answers to<br />practical questions</h2>
-          <p>What to expect when planning, building, and owning your software.</p>
+          <h2 className='text-center'>Clear answers to<br />practical questions</h2>
+          <div className=" flex justify-center"><p className='text-center'>What to expect when planning, building, and owning your software.</p> </div>
         </ScrollReveal>
         <div className="faq-list">
           {faqs.map(([question, answer], index) => {
@@ -30,7 +30,7 @@ export default function FaqSection() {
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div id={answerId} className="faq-answer-wrap" role="region" aria-labelledby={`faq-trigger-${index}`} initial={{ height: 0, opacity: 0, y: 12 }} animate={{ height: "auto", opacity: 1, y: 0 }} exit={{ height: 0, opacity: 0, y: -8 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
+                    <motion.div id={answerId} className="faq-answer-wrap" role="region" aria-labelledby={`faq-trigger-${index}`} initial={{ height: 0, opacity: 0, y: 6 }} animate={{ height: "auto", opacity: 1, y: 0 }} exit={{ height: 0, opacity: 0, y: -4 }} transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}>
                       <p>{answer}</p>
                     </motion.div>
                   )}

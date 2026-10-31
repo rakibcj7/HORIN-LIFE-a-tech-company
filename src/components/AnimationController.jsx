@@ -28,11 +28,12 @@ export function useAnimationState() {
  * Count from 0 to `target` once per mount, including when the page is parked
  * at the end of the document.
  */
-export function useCountUp(target, duration = 1800) {
+export function useCountUp(target, duration = 1800, enabled = true) {
   const [value, setValue] = useState(0);
   const elapsedRef = useRef(0);
 
   useEffect(() => {
+    if (!enabled) return undefined;
     if (elapsedRef.current >= duration) return undefined;
 
     let frame;
@@ -48,7 +49,7 @@ export function useCountUp(target, duration = 1800) {
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [duration, target]);
+  }, [duration, target, enabled]);
 
   return value;
 }

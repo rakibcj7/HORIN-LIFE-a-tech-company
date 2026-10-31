@@ -5,18 +5,23 @@ import Icon from "./Icon";
 import { MotionGroup, MotionItem } from "./MotionGroup";
 import ScrollReveal from "./ScrollReveal";
 import { useCountUp } from "./AnimationController";
+import { useInView } from "motion/react";
+import { useRef } from "react";
 
-function AnimatedValue({ value }) {
+function AnimatedValue({ value, animate }) {
   const match = value.match(/^(\d+)(.*)$/);
   const target = match ? parseInt(match[1], 10) : 0;
   const suffix = match ? match[2] : "";
   const pad = match && match[1].length > 1 && match[1].startsWith("0") ? match[1].length : 0;
-  const count = Math.round(useCountUp(target, 2200));
+  const count = Math.round(useCountUp(target, 1500, animate));
   const display = pad ? String(count).padStart(pad, "0") : count;
   return <>{display}{suffix}</>;
 }
 
 export default function AboutSection() {
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, amount: 0.35 });
+
   return (
     <section className="section about-section" id="about">
       <div className="container">
@@ -40,11 +45,11 @@ export default function AboutSection() {
           </ScrollReveal>
         </div>
 
-        <MotionGroup className="about-stats">
+        <MotionGroup className="about-stats" innerRef={statsRef}>
           {about.stats.map((stat) => (
             <MotionItem className="about-stat-item" key={stat.label}>
               <article className="about-stat">
-                <b><AnimatedValue value={stat.value} /></b>
+                <b><AnimatedValue value={stat.value} animate={statsInView} /></b>
                 <span>{stat.label}</span>
                 <small>{stat.note}</small>
               </article>

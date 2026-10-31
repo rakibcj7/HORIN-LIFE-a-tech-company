@@ -8,10 +8,10 @@ export default function FrictionSection() {
   return (
     <section className="section friction-section">
       <div className="container">
-        <ScrollReveal className="center-heading">
+        <ScrollReveal className="center-heading friction-heading text-center flex flex-col items-center justify-center mx-auto">
           <Eyebrow centered>DIRECT SOLUTIONS</Eyebrow>
           <h2>Annyoing Small Problem?<br />Say No More!</h2>
-          <p>We cure operational headaches that keep founders working late on tasks computers should handle.</p>
+          <p>Common business bottlenecks, paired with practical software solutions.</p>
         </ScrollReveal>
         <MotionGroup className="friction-grid">
           {frictions.map((item) => (
@@ -19,8 +19,8 @@ export default function FrictionSection() {
               <article className="friction-card">
                 <div className="friction-top"><span>{item[0]}</span><Icon name="alert" size={20} /></div>
                 <h3>{item[1]}</h3>
-                <p>{item[2]}</p>
-                <div className="cure"><b><Icon name="check" size={16} /> HORIN LIFE SOLUTION</b><p>{item[3]}</p></div>
+                <div className="friction-problem"><span className="friction-label">THE CHALLENGE</span><p>{item[2]}</p></div>
+                <div className="cure"><b><Icon name="check" size={16} /> THE SOLUTION</b><p>{item[3]}</p></div>
               </article>
             </MotionItem>
           ))}

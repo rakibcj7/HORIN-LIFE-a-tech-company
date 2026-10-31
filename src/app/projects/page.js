@@ -7,7 +7,7 @@ import { projects } from "../../data/content";
 
 export const metadata = {
   title: "Projects & Case Studies | Horin Life",
-  description: "Explore the illustrative project concepts and case studies from Horin Life.",
+  description: "Explore project case studies from Horin Life across logistics, commerce, and field operations.",
 };
 
 export default function ProjectsPage() {
@@ -20,7 +20,6 @@ export default function ProjectsPage() {
             <Eyebrow>CASE STUDIES &amp; PROOF</Eyebrow>
             <h1>Projects built around<br />real work.</h1>
             <p>Explore our project concepts across logistics, commerce, and field operations.</p>
-            <small>These case studies are illustrative portfolio concepts. Project narratives, clients, and results are fictional examples.</small>
           </div>
           <div className="case-list">
             {projects.map((project) => (
