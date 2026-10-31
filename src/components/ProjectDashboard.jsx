@@ -29,13 +29,11 @@ export default function ProjectDashboard({ kind }) {
     );
   }
 
-  return (
-    <div className="field-window">
-      <div className="field-head"><span><i className="online-dot" /> Offline mode active</span><small>LOCAL CACHE / V3.12</small></div>
-      {["Sector 7B · Soil scan and canopy report", "Timber permit #8929 · verified", "CAT Skidder #4 · pre-check complete"].map((item, index) => (
-        <div className="field-row" key={item}><span>{item}</span><b>{index === 1 ? "Queued to sync" : "Saved offline"}</b></div>
-      ))}
-      <small className="field-foot"><Icon name="check" size={14} /> Changes sync when the crew reconnects</small>
-    </div>
-  );
+  if (kind === "dashboard") {
+    return (
+      <div className="project-image-preview">
+        <img src="/projects/online-business-dashboard.jpg" alt="Online Business Dashboard" loading="lazy" />
+      </div>
+    );
+  }
 }

@@ -33,7 +33,11 @@ async function ProjectDetails({ params }) {
               <Eyebrow>{project.tag}</Eyebrow>
               <h1>{project.title}</h1>
               <p>{project.copy}</p>
-              <div className="project-detail-meta"><span><small>DELIVERY</small><b>{project.detail.timeline}</b></span><span><small>OUR ROLE</small><b>{project.detail.role}</b></span></div>
+              <div className="project-detail-meta">
+                <span><small>DELIVERY</small><b>{project.detail.timeline}</b></span>
+                <span><small>OUR ROLE</small><b>{project.detail.role}</b></span>
+                {project.detail.liveUrl ? <span><small>LIVE SITE</small><b><a href={project.detail.liveUrl} target="_blank" rel="noopener noreferrer">{project.detail.liveUrl.replace(/^https?:\/\//, "")}</a></b></span> : null}
+              </div>
             </div>
             <div className="project-detail-visual"><ProjectDashboard kind={project.visual} /></div>
           </div>
@@ -58,7 +62,17 @@ async function ProjectDetails({ params }) {
             <ul>{project.detail.delivery.map((item) => <li key={item}><Icon name="check" size={18} />{item}</li>)}</ul>
           </section>
 
-          <aside className="project-outcome"><span>03 / THE OUTCOME</span><p>{project.detail.outcome}</p></aside>
+          <aside className="project-outcome">
+            <span>03 / THE OUTCOME</span>
+            <p>{project.detail.outcome}</p>
+            {project.detail.liveUrl ? (
+              <div className="project-outcome-action">
+                <a className="button button-dark" href={project.detail.liveUrl} target="_blank" rel="noopener noreferrer">
+                  Visit Live Site
+                </a>
+              </div>
+            ) : null}
+          </aside>
 
           <div className="project-next"><div><Eyebrow>HAVE A SIMILAR CHALLENGE?</Eyebrow><h2>Let&apos;s map a better way to work.</h2></div><Link className="button button-dark" href="/#contact">Talk with our team <Arrow /></Link></div>
         </div>
